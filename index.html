@@ -1,0 +1,442 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Flora Market</title>
+  <link rel="stylesheet" href="proyecto.css">
+  <!-- Fuentes e Iconos -->
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <script src="https://unpkg.com/lucide@latest"></script>
+  <!-- Generador de QR (Librería oficial JS) -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+</head>
+<body>
+
+  <!-- Navbar -->
+  <header class="navbar">
+    <div class="nav-container">
+      <div class="brand">
+        <img src="Screenshot_20261024-223758.jpg" alt="Flora Market Logo" class="brand-logo">
+        <span>Flora Market</span>
+      </div>
+      
+      <nav class="nav-links">
+        <button class="nav-btn active" id="nav-btn-home" onclick="switchTab('home', this)">
+          <i data-lucide="home"></i> Inicio
+        </button>
+        <button class="nav-btn" id="nav-btn-catalog" onclick="switchTab('catalog', this)">
+          <i data-lucide="store"></i> Catálogo
+        </button>
+        <button class="nav-btn" id="nav-btn-customizer" onclick="switchTab('customizer', this)">
+          <i data-lucide="sparkles"></i> Personalizar Ramo
+        </button>
+      </nav>
+
+      <div class="nav-actions">
+        <button class="cart-btn" onclick="toggleCartModal(true)">
+          <i data-lucide="shopping-cart"></i>
+          <span>Carrito</span>
+          <span class="cart-badge" id="cart-count">0</span>
+        </button>
+        <div id="user-nav-area"></div>
+      </div>
+    </div>
+  </header>
+
+  <!-- Main Container -->
+  <main class="main-wrapper">
+
+    <!-- TAB: INICIO -->
+    <section id="tab-home" class="tab-content active">
+      <div class="hero-banner home-hero">
+        <div>
+          <span class="product-tag" style="margin-bottom: 10px; display: inline-block;">BIENVENIDOS A FLORA MARKET</span>
+          <h2>Regala detalles eternos hechos a mano 🌸</h2>
+          <p>Transformamos limpiapipas en arreglos florales únicos que nunca se marchitan, ideales para sorprender en cualquier ocasión.</p>
+          <div style="margin-top: 20px; display: flex; gap: 12px;">
+            <button class="btn-primary" onclick="goToSection('catalog')">
+              <i data-lucide="store"></i> Ver Catálogo
+            </button>
+            <button class="btn-secondary" onclick="goToSection('customizer')">
+              <i data-lucide="sparkles"></i> Personalizar mi Ramo
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <div class="about-grid">
+        <div class="card about-card">
+          <div class="about-icon pink-bg"><i data-lucide="users"></i></div>
+          <h3>¿Quiénes Somos?</h3>
+          <p>Somos un emprendimiento artesanal dedicado al diseño y elaboración de flores y arreglos creativos con limpiapipas. Nacimos de la pasión por las manualidades y el deseo de ofrecer regalos duraderos y significativos.</p>
+        </div>
+
+        <div class="card about-card">
+          <div class="about-icon green-bg"><i data-lucide="flower-2"></i></div>
+          <h3>¿Qué Hacemos?</h3>
+          <p>Creamos ramos personalizados, flores individuales, llaveros y arreglos decorativos moldeados a mano. Te permitimos elegir colores, envolturas, luces LED y dedicatorias a tu gusto.</p>
+        </div>
+
+        <div class="card about-card">
+          <div class="about-icon yellow-bg"><i data-lucide="target"></i></div>
+          <h3>Nuestros Objetivos</h3>
+          <ul class="objectives-list">
+            <li>Brindar una alternativa ecológica y eterna frente a las flores naturales.</li>
+            <li>Ofrecer diseños personalizados de alta calidad a precios accesibles.</li>
+            <li>Fomentar el arte manual y la creatividad en cada detalle entregado.</li>
+          </ul>
+        </div>
+
+        <div class="card about-card">
+          <div class="about-icon blue-bg"><i data-lucide="map-pin"></i></div>
+          <h3>¿Dónde Nos Ubicamos?</h3>
+          <p><strong>Ciudad:</strong> Santa Cruz de la Sierra, Bolivia.</p>
+          <p><strong>Modalidad:</strong> Tienda virtual con envíos a domicilio en toda la ciudad y puntos de entrega coordinados.</p>
+          <p style="margin-top: 8px; font-size: 13px; color: var(--primary-green);">
+            <i data-lucide="clock" style="width: 14px; height: 14px; vertical-align: middle;"></i> Atención: Lunes a Sábado de 09:00 a 20:00
+          </p>
+        </div>
+      </div>
+
+      <!-- NUEVA SECCIÓN: OPINIONES DE CLIENTES -->
+      <div style="margin-top: 40px;">
+        <h3 style="text-align: center; margin-bottom: 25px; color: var(--primary-green-dark); font-size: 24px;">Lo que dicen nuestros clientes 💬</h3>
+        <div class="reviews-grid">
+          <div class="card review-card">
+            <div class="stars">⭐⭐⭐⭐⭐</div>
+            <p>"El ramo de girasoles quedó hermoso y nunca se marchita. ¡A mi novia le encantó la sorpresa en Santa Cruz!"</p>
+            <strong>— Andrea M.</strong>
+          </div>
+          <div class="card review-card">
+            <div class="stars">⭐⭐⭐⭐⭐</div>
+            <p>"Excelente atención y los detalles con los limpiapipas son súper originales. Pedí con luces LED y luce increíble."</p>
+            <strong>— Marco R.</strong>
+          </div>
+          <div class="card review-card">
+            <div class="stars">⭐⭐⭐⭐⭐</div>
+            <p>"Súper puntuales con el envío a domicilio y el pago por QR fue facilísimo. 100% recomendados."</p>
+            <strong>— Camila S.</strong>
+          </div>
+        </div>
+      </div>
+
+      <!-- NUEVA SECCIÓN: REDES SOCIALES -->
+      <div class="card social-banner" style="margin-top: 30px; text-align: center; background: linear-gradient(135deg, #fce4ec 0%, #e8f5e9 100%);">
+        <h3>¡Síguenos en nuestras Redes Sociales! 🌸</h3>
+        <p style="margin: 10px 0 20px; color: var(--text-muted);">Entérate de nuevos diseños, sorteos y ofertas exclusivas.</p>
+        <div class="social-buttons" style="display: flex; justify-content: center; gap: 15px;">
+          <a href="https://instagram.com" target="_blank" class="btn-primary" style="background-color: #E1306C;"><i data-lucide="instagram"></i> Instagram</a>
+          <a href="https://tiktok.com" target="_blank" class="btn-primary" style="background-color: #000000;"><i data-lucide="video"></i> TikTok</a>
+          <a href="https://wa.link/wmaw1d" target="_blank" class="btn-primary" style="background-color: #25d366;"><i data-lucide="message-circle"></i> WhatsApp</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- TAB: CATÁLOGO -->
+    <section id="tab-catalog" class="tab-content">
+      <div class="hero-banner">
+        <div>
+          <h2>Flores artesanales de limpiapipas 🌸</h2>
+          <p>Hechas a mano con amor y dedicación. Regalos eternos que alegran tu día.</p>
+        </div>
+        <button class="btn-primary" onclick="goToSection('customizer')">
+          <i data-lucide="wand-2"></i> Diseña tu propio ramo
+        </button>
+      </div>
+
+      <!-- Filtros de Categorías -->
+      <div class="filter-bar">
+        <button class="filter-btn active" onclick="filterCatalog('all', this)">Todos</button>
+        <button class="filter-btn" onclick="filterCatalog('individual', this)">Flores Individuales</button>
+        <button class="filter-btn" onclick="filterCatalog('ramo', this)">Ramos Armados</button>
+        <button class="filter-btn" onclick="filterCatalog('especial', this)">Colección Especial</button>
+      </div>
+      <!-- Grid de Productos -->
+      <div class="products-grid" id="products-container"></div>
+    </section>
+
+    <!-- TAB: PERSONALIZADOR DE RAMOS -->
+    <section id="tab-customizer" class="tab-content">
+      <div class="customizer-layout">
+        <!-- Panel Izquierdo: Opciones -->
+        <div class="customizer-controls card">
+          <h2><i data-lucide="sliders"></i> Diseña tu Ramo Personalizado</h2>
+          
+          <div class="form-group">
+            <label>1. Tipo de Flor Principal</label>
+            <div class="radio-grid">
+              <label class="radio-card"><input type="radio" name="c-flower" value="Girasol" data-price="35" checked onchange="updateCustomizer()"> Girasol (35 Bs)</label>
+              <label class="radio-card"><input type="radio" name="c-flower" value="Tulipán" data-price="25" onchange="updateCustomizer()"> Tulipán (25 Bs)</label>
+              <label class="radio-card"><input type="radio" name="c-flower" value="Rosa" data-price="30" onchange="updateCustomizer()"> Rosa (30 Bs)</label>
+              <label class="radio-card"><input type="radio" name="c-flower" value="Margarita" data-price="20" onchange="updateCustomizer()"> Margarita (20 Bs)</label>
+              <label class="radio-card"><input type="radio" name="c-flower" value="Orquídea" data-price="40" onchange="updateCustomizer()"> Orquídea (40 Bs)</label>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label>2. Tono de Limpiapipas Principal</label>
+            <div class="color-options">
+              <button class="color-dot yellow active" onclick="selectColor('Amarillo Neón', this)"></button>
+              <button class="color-dot pink" onclick="selectColor('Rosa Pastel', this)"></button>
+              <button class="color-dot purple" onclick="selectColor('Morado Radiante', this)"></button>
+              <button class="color-dot blue" onclick="selectColor('Azul Cielo', this)"></button>
+              <button class="color-dot red" onclick="selectColor('Rojo Pasión', this)"></button>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label>3. Cantidad de Tallos: <span id="c-qty-val" class="highlight">6</span> unidades</label>
+            <input type="range" min="3" max="24" value="6" id="c-qty-slider" oninput="updateCustomizer()">
+          </div>
+
+          <div class="form-group">
+            <label>4. Envoltura de Papel Coreano</label>
+            <select id="c-wrap" class="input-select" onchange="updateCustomizer()">
+              <option value="Rosa Pastel" data-price="15">Rosa Pastel (+ 15 Bs)</option>
+              <option value="Blanco Perla" data-price="15">Blanco Perla (+ 15 Bs)</option>
+              <option value="Kraft Artesanal" data-price="10">Kraft Artesanal (+ 10 Bs)</option>
+              <option value="Negro Elegante" data-price="20">Negro Elegante (+ 20 Bs)</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label>5. Extras Especiales</label>
+            <div class="checkbox-group">
+              <label><input type="checkbox" id="c-led" data-price="20" onchange="updateCustomizer()"> Luces LED Cálidas (+ 20 Bs)</label>
+              <label><input type="checkbox" id="c-card" data-price="10" onchange="updateCustomizer()"> Tarjeta con Dedicatoria (+ 10 Bs)</label>
+            </div>
+          </div>
+
+          <div class="form-group" id="card-note-container" style="display: none;">
+            <label>Dedicatoria en la tarjeta:</label>
+            <textarea id="c-note-text" placeholder="Escribe tu mensaje especial aquí..." rows="2" class="input-textarea"></textarea>
+          </div>
+        </div>
+
+        <!-- Panel Derecho: Vista Previa y Resumen -->
+        <div class="customizer-preview card">
+          <h3>Resumen de tu Diseño</h3>
+          <div class="preview-box">
+            <i data-lucide="flower" class="preview-icon"></i>
+            <h4 id="prev-title">Ramo de Girasol</h4>
+            <p id="prev-details">6 tallos • Tono: Amarillo Neón</p>
+            <div class="tags-container" id="prev-tags"></div>
+          </div>
+
+          <div class="price-breakdown">
+            <div class="price-row"><span>Tallos:</span> <span id="pr-stems">Bs. 0.00</span></div>
+            <div class="price-row"><span>Envoltura:</span> <span id="pr-wrap">Bs. 0.00</span></div>
+            <div class="price-row"><span>Extras:</span> <span id="pr-extras">Bs. 0.00</span></div>
+            <hr>
+            <div class="price-row total"><span>Total Estimado:</span> <span id="pr-total" class="highlight">Bs. 0.00</span></div>
+          </div>
+
+          <button class="btn-primary full-width" onclick="addCustomToCart()">
+            <i data-lucide="shopping-bag"></i> Agregar Ramo Personalizado al Carrito
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <!-- TAB: BASE DE DATOS / ADMIN (Oculta del menú, accesible por Ctrl + Shift + A) -->
+    <section id="tab-admin" class="tab-content">
+      <div id="admin-login-box" class="admin-auth card">
+        <i data-lucide="shield-check" class="auth-icon"></i>
+        <h2>Acceso Restringido a Base de Datos</h2>
+        <p>Solo personal autorizado de Flora Market.</p>
+        <div class="form-group">
+          <input type="password" id="admin-pass" placeholder="Ingresa la contraseña admin" class="input-text">
+        </div>
+        <button class="btn-primary full-width" onclick="checkAdminPass()">Acceder al Panel</button>
+        <p class="help-text">Clave por defecto de prueba: <strong>admin123</strong></p>
+      </div>
+
+      <div id="admin-dashboard" class="admin-panel card" style="display: none;">
+        <div class="admin-header">
+          <div>
+            <h2><i data-lucide="database"></i> Base de Datos de Usuarios y Accesos</h2>
+            <p>Monitoreo de sesiones e historial de compras registradas localmente.</p>
+          </div>
+          <button class="btn-secondary" onclick="logoutAdmin()">Cerrar Sesión Admin</button>
+        </div>
+
+        <div class="stats-cards">
+          <div class="stat-card">
+            <span class="stat-num" id="stat-users">0</span>
+            <span class="stat-lbl">Usuarios Registrados</span>
+          </div>
+          <div class="stat-card">
+            <span class="stat-num" id="stat-logins">0</span>
+            <span class="stat-lbl">Inicios de Sesión Totales</span>
+          </div>
+        </div>
+
+        <h3>Tabla de Usuarios Registrados</h3>
+        <div class="table-container">
+          <table class="data-table">
+            <thead>
+              <tr>
+                <th>ID</th>
+                <th>Nombre</th>
+                <th>Correo Electrónico</th>
+                <th>Fecha de Registro</th>
+                <th>Última Sesión</th>
+              </tr>
+            </thead>
+            <tbody id="admin-users-table"></tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- MODAL: CARRITO -->
+  <div class="modal-overlay" id="cart-modal">
+    <div class="modal-card">
+      <div class="modal-header">
+        <h3><i data-lucide="shopping-cart"></i> Carrito de Compras</h3>
+        <button class="close-btn" onclick="toggleCartModal(false)">&times;</button>
+      </div>
+      
+      <div class="cart-body" id="cart-items-container"></div>
+      
+      <!-- Selector de Fecha y Hora de Entrega -->
+      <div class="delivery-box" style="padding: 12px; background: #f8fafc; border-radius: 12px; margin-bottom: 15px; border: 1px solid var(--border-color);">
+        <label style="display: block; font-weight: 600; font-size: 13px; margin-bottom: 6px;"><i data-lucide="calendar"></i> Fecha y Hora de Entrega:</label>
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px;">
+          <input type="date" id="delivery-date" class="input-text" style="font-size: 13px; padding: 8px;">
+          <input type="time" id="delivery-time" class="input-text" style="font-size: 13px; padding: 8px;">
+        </div>
+      </div>
+
+      <div class="cart-footer">
+        <div class="cart-total-row">
+          <span>Total a Pagar:</span>
+          <span id="cart-total-price" class="highlight">Bs. 0.00</span>
+        </div>
+        <button class="btn-primary full-width" onclick="proceedToCheckout()" id="btn-checkout">
+          Proceder al Pago por QR <i data-lucide="qr-code"></i>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- MODAL: DETALLE DE PRODUCTO -->
+  <div class="modal-overlay" id="product-detail-modal">
+    <div class="modal-card detail-modal-card">
+      <div class="modal-header">
+        <span class="product-tag" id="detail-category">CATEGORÍA</span>
+        <button class="close-btn" onclick="toggleProductDetailModal(false)">&times;</button>
+      </div>
+      
+      <div class="detail-grid">
+        <div class="detail-img-box">
+          <img id="detail-img" src="" alt="Producto">
+        </div>
+        
+        <div class="detail-info">
+          <h2 id="detail-title">Nombre del Producto</h2>
+          <p class="detail-price" id="detail-price">Bs. 0.00</p>
+          <p class="detail-desc" id="detail-desc">Descripción detallada del producto...</p>
+          
+          <div class="detail-qty-selector">
+            <label>Cantidad:</label>
+            <div class="cart-item-qty">
+              <button class="qty-btn" onclick="changeDetailQty(-1)">-</button>
+              <span id="detail-qty-val" style="font-weight: 700; min-width: 24px; text-align: center;">1</span>
+              <button class="qty-btn" onclick="changeDetailQty(1)">+</button>
+            </div>
+          </div>
+
+          <div class="detail-actions">
+            <button class="btn-secondary full-width" onclick="addFromDetailToCart()">
+              <i data-lucide="shopping-cart"></i> Agregar al Carrito
+            </button>
+            <button class="btn-primary full-width" onclick="buyNowFromDetail()">
+              <i data-lucide="qr-code"></i> Comprar Ahora
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- MODAL: PAGO POR QR -->
+  <div class="modal-overlay" id="qr-modal">
+    <div class="modal-card qr-card">
+      <div class="modal-header">
+        <h3><i data-lucide="qr-code"></i> Pago por Código QR</h3>
+        <button class="close-btn" onclick="toggleQRModal(false)">&times;</button>
+      </div>
+      <div class="qr-body">
+        <p>Escanea con tu aplicación bancaria o billetera digital para completar tu pedido.</p>
+        <div class="qr-code-box" style="display: flex; justify-content: center; align-items: center; padding: 10px; background: white; border-radius: 8px;">
+          <img id="qr-img-tag" src="qr_1794780264517.png" alt="QR de Pago Flora Market" style="width: 180px; height: 180px; object-fit: contain; display: block;">
+        </div>
+</div>
+        <div class="qr-amount-badge">
+          <span>Monto a transferir:</span>
+          <strong id="qr-total-amount">Bs. 0.00</strong>
+        </div>
+        <p class="qr-note"><i data-lucide="clock"></i> El código expira en 10:00 minutos</p>
+        <button class="btn-primary full-width" onclick="confirmQRPayment()">
+          <i data-lucide="check-circle"></i> Ya realicé la transferencia
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- MODAL: LOGIN Y REGISTRO -->
+  <div class="modal-overlay" id="auth-modal">
+    <div class="modal-card auth-card">
+      <div class="modal-header">
+        <h3 id="auth-title">Iniciar Sesión</h3>
+        <button class="close-btn" onclick="toggleAuthModal(false)">&times;</button>
+      </div>
+      
+      <form id="form-login" onsubmit="handleLogin(event)">
+        <div class="form-group">
+          <label>Correo Electrónico</label>
+          <input type="email" id="login-email" required class="input-text" placeholder="correo@ejemplo.com">
+        </div>
+        <div class="form-group">
+          <label>Contraseña</label>
+          <input type="password" id="login-password" required class="input-text" placeholder="••••••••">
+        </div>
+        <button type="submit" class="btn-primary full-width">Ingresar</button>
+        <p class="auth-switch">¿No tienes cuenta? <a href="#" onclick="switchAuthMode('register')">Regístrate aquí</a></p>
+      </form>
+
+      <form id="form-register" onsubmit="handleRegister(event)" style="display: none;">
+        <div class="form-group">
+          <label>Nombre Completo</label>
+          <input type="text" id="reg-name" required class="input-text" placeholder="Ej: Maria Perez">
+        </div>
+        <div class="form-group">
+          <label>Correo Electrónico</label>
+          <input type="email" id="reg-email" required class="input-text" placeholder="correo@ejemplo.com">
+        </div>
+        <div class="form-group">
+          <label>Contraseña</label>
+          <input type="password" id="reg-password" required class="input-text" placeholder="••••••••">
+        </div>
+        <button type="submit" class="btn-primary full-width">Crear Cuenta</button>
+        <p class="auth-switch">¿Ya tienes cuenta? <a href="#" onclick="switchAuthMode('login')">Inicia sesión</a></p>
+      </form>
+    </div>
+  </div>
+
+  <!-- Botón Flotante de WhatsApp -->
+  <a href="https://wa.link/wmaw1d" class="whatsapp-float" target="_blank" title="Contáctanos por WhatsApp">
+     <i data-lucide="message-circle"></i>
+     <span>Consultas</span>
+  </a>
+
+  <footer style="text-align: center; padding: 20px; font-size: 14px; color: var(--text-muted);">
+    <p>¿Tienes dudas sobre tu pedido? Escríbenos directamente a nuestro <a href="https://wa.link/wmaw1d" target="_blank" style="color: #25d366; font-weight: bold;">WhatsApp Oficial</a>.</p>
+  </footer>
+
+  <script src="js.js"></script>
+</body>
+</html>
